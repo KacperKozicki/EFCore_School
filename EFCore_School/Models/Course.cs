@@ -17,6 +17,6 @@ namespace EFCore_School.Models
 
 
         //public List<Student>? Studencts { get; set; }
-        public ICollection<Student>? Studencts { get; set; }
+        public ICollection<Student>? Students { get; set; }
     }
 }

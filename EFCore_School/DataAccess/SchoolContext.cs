@@ -16,7 +16,7 @@ namespace EFCore_School.DataAccess
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string path = Path.Combine(Environment.CurrentDirectory, "School.db");
-            optionsBuilder.UseSqlite($"Filename-{path}");
+            optionsBuilder.UseSqlite($"Filename={path}");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -32,15 +32,15 @@ namespace EFCore_School.DataAccess
         {
             Student s1 = new() { Id = 1, FirstName = "aaaa", LastName = "aaaaa" };
             Student s2 = new() { Id = 2, FirstName = "ssss", LastName = "ssss" };
-            modelBuilder.Entity<Student>().HasData(s1, s2, new() { Id = 1, FirstName = "dupa", LastName = "www" });
+            modelBuilder.Entity<Student>().HasData(s1, s2, new() { Id = 3, FirstName = "dupa", LastName = "www" });
 
 
             Course c1 = new Course() { Id = 1, Title = "Matma" };
             Course c2 = new Course() { Id = 2, Title = "Algorytmy" };
-            modelBuilder.Entity<Course>().HasData(c1, c2, new() { Id = 1, Title = "AI" });
+            modelBuilder.Entity<Course>().HasData(c1, c2, new() { Id = 3, Title = "AI" });
 
             modelBuilder.Entity<Course>()
-                .HasMany(c => c.Studencts)
+                .HasMany(c => c.Students)
                 .WithMany(s => s.Courses)
                 .UsingEntity(cs => cs
                 .HasData(

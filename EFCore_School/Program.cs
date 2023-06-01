@@ -30,15 +30,14 @@ namespace EFCore_School
             // }
             using (SchoolContext school = new())
             {
-               //bool deleted = await school.Database.EnsureDeletedAsync();
-               // Console.WriteLine($"Baza skasowana: { deleted}");
+                bool deleted = await school.Database.EnsureDeletedAsync();
+                Console.WriteLine($"Baza skasowana: {deleted}");
 
-                //bool created = await school.Database.EnsureCreatedAsync();
-                //Console.WriteLine($"Baza utworzona: {created}");
+                bool created = await school.Database.EnsureCreatedAsync();
+                Console.WriteLine($"Baza utworzona: {created}");
 
                 string sqlScript = school.Database.GenerateCreateScript();
                 Console.WriteLine(sqlScript);
-
 
             }
 
